@@ -418,19 +418,21 @@ header.nav-open .nav-toggle span:nth-child(3){transform:translateY(-6.5px) rotat
 .lightbox-fechar:hover{transform:scale(1.08); background:var(--gold);}
 .lightbox-seta{
   position:fixed; top:50%; transform:translateY(-50%);
+  z-index:5;  /* fica sempre na frente da foto (a seta esquerda vem antes da foto no HTML) */
   width:48px; height:48px; border-radius:50%;
-  background:rgba(250,247,238,0.15);
+  background:rgba(22,20,15,0.55);
   border:1px solid rgba(250,247,238,0.4);
   color:var(--paper); font-size:22px; line-height:1;
   display:flex; align-items:center; justify-content:center;
   cursor:pointer; backdrop-filter:blur(6px);
   transition:background .3s var(--ease), transform .3s var(--ease);
 }
-.lightbox-seta:hover{background:rgba(250,247,238,0.3);}
+.lightbox-seta:hover{background:rgba(22,20,15,0.8);}
 .lightbox-anterior{left:24px;}
 .lightbox-proxima{right:24px;}
 .lightbox-contador{
   position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+  z-index:5;
   font-family:var(--font-mono); font-size:12.5px; letter-spacing:0.08em;
   color:rgba(250,247,238,0.75);
 }
