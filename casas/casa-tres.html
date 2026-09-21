@@ -43,7 +43,8 @@
 
   <section class="casa-hero">
     <div class="hero-photo">
-      <img src="../img/vista_chale_3.jpg" alt="Vista da natureza a partir do Chalé Jardim do Sossego">
+      <img src="../img/vistajardim.png
+      " alt="Vista da natureza a partir do Chalé Jardim do Sossego">
     </div>
     <div class="hero-content">
       <p class="eyebrow load-in" style="--delay:.05s">Nova Friburgo, RJ · Brasil</p>
@@ -53,28 +54,38 @@
 
   <section class="casa-galeria">
     <div class="wrap">
-      <div class="carrossel reveal" data-carrossel>
-        <button class="carrossel-seta carrossel-anterior" data-anterior aria-label="Foto anterior">‹</button>
-        <div class="carrossel-trilho" data-trilho>
-          <div class="carrossel-item"><img src="../img/jardim1.avif"
-              loading="lazy" alt="Chalé Jardim do Sossego - foto 1"></div>
-          <div class="carrossel-item"><img src="../img/jardim2.avif"
-              loading="lazy" alt="Chalé Jardim do Sossego - foto 2"></div>
-          <div class="carrossel-item"><img src="../img/jardim3.avif"
-              loading="lazy" alt="Chalé Jardim do Sossego - foto 3"></div>
-          <div class="carrossel-item"><img src="../img/jardim4.avif"
-              loading="lazy" alt="Chalé Jardim do Sossego - foto 4"></div>
-          <div class="carrossel-item"><img src="../img/jardim5.jpg"
-              loading="lazy" alt="Chalé Jardim do Sossego - foto 5"></div>
-          <div class="carrossel-item"><img src="../img/jardim6.avif"
-              loading="lazy" alt="Chalé Jardim do Sossego - foto 6"></div>
-          <div class="carrossel-item"><img src="../img/jardim7.jpg"
-              loading="lazy" alt="Chalé Jardim do Sossego - foto 7"></div>
-          <div class="carrossel-item"><img src="../img/jardim8.avif"
-              loading="lazy" alt="Chalé Jardim do Sossego - foto 8"></div>
+      <div class="galeria-grid reveal" data-galeria>
+        <div class="galeria-principal">
+          <img class="galeria-foto" src="../img/jardim1.avif" alt="Chalé Jardim do Sossego - foto 1">
         </div>
-        <button class="carrossel-seta carrossel-proxima" data-proxima aria-label="Próxima foto">›</button>
-        <div class="carrossel-dots" data-dots></div>
+        <div class="galeria-secundarias">
+          <div class="galeria-item">
+            <img class="galeria-foto" src="../img/jardim2.avif" loading="lazy" alt="Chalé Jardim do Sossego - foto 2">
+          </div>
+          <div class="galeria-item">
+            <img class="galeria-foto" src="../img/jardim3.avif" loading="lazy" alt="Chalé Jardim do Sossego - foto 3">
+          </div>
+          <div class="galeria-item">
+            <img class="galeria-foto" src="../img/jardim4.avif" loading="lazy" alt="Chalé Jardim do Sossego - foto 4">
+          </div>
+          <div class="galeria-item">
+            <img class="galeria-foto" src="../img/jardim5.jpg" loading="lazy" alt="Chalé Jardim do Sossego - foto 5">
+          </div>
+        </div>
+        <button class="galeria-ver-todas" data-ver-todas type="button">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3" />
+            <rect x="9" y="1" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3" />
+            <rect x="1" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3" />
+            <rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" stroke-width="1.3" />
+          </svg>
+          Ver todas as fotos
+        </button>
+        <div class="galeria-extra" hidden>
+          <img class="galeria-foto" src="../img/jardim6.avif" loading="lazy" alt="Chalé Jardim do Sossego - foto 6">
+          <img class="galeria-foto" src="../img/jardim7.jpg" loading="lazy" alt="Chalé Jardim do Sossego - foto 7">
+          <img class="galeria-foto" src="../img/jardim8.avif" loading="lazy" alt="Chalé Jardim do Sossego - foto 8">
+        </div>
       </div>
     </div>
   </section>
@@ -138,6 +149,13 @@
           <div>
             <p class="oc-loc">Nova Friburgo, RJ</p>
             <h5>Chalé Doce Lar</h5>
+          </div>
+        </a>
+        <a class="outra-casa reveal" style="--delay:.1s" href="casa-quatro.html">
+          <img src="../img/galeria_refugiodapaz_6.jpeg" alt="Chalé Refúgio da Paz">
+          <div>
+            <p class="oc-loc">Nova Friburgo, RJ</p>
+            <h5>Chalé Refúgio da Paz</h5>
           </div>
         </a>
       </div>
@@ -244,48 +262,6 @@
       });
     })();
 
-    // Carrossel de fotos (setas + bolinhas + destaque da foto ativa)
-    (function () {
-      document.querySelectorAll('[data-carrossel]').forEach(function (carrossel) {
-        var trilho = carrossel.querySelector('[data-trilho]');
-        var itens = Array.prototype.slice.call(trilho.children);
-        var dotsWrap = carrossel.querySelector('[data-dots]');
-        var anterior = carrossel.querySelector('[data-anterior]');
-        var proxima = carrossel.querySelector('[data-proxima]');
-
-        itens.forEach(function (item, i) {
-          var dot = document.createElement('button');
-          dot.setAttribute('aria-label', 'Ir para a foto ' + (i + 1));
-          if (i === 0) dot.classList.add('is-active');
-          dot.addEventListener('click', function () {
-            item.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
-          });
-          dotsWrap.appendChild(dot);
-        });
-        var dots = Array.prototype.slice.call(dotsWrap.children);
-
-        function mover(direcao) {
-          var largura = itens[0].getBoundingClientRect().width + 16;
-          trilho.scrollBy({ left: direcao * largura, behavior: 'smooth' });
-        }
-        if (anterior) anterior.addEventListener('click', function () { mover(-1); });
-        if (proxima) proxima.addEventListener('click', function () { mover(1); });
-
-        if ('IntersectionObserver' in window) {
-          var obs = new IntersectionObserver(function (entradas) {
-            entradas.forEach(function (entrada) {
-              var idx = itens.indexOf(entrada.target);
-              if (entrada.isIntersecting && idx > -1) {
-                dots.forEach(function (d) { d.classList.remove('is-active'); });
-                dots[idx].classList.add('is-active');
-              }
-            });
-          }, { root: trilho, threshold: 0.6 });
-          itens.forEach(function (item) { obs.observe(item); });
-        }
-      });
-    })();
-
     // Lightbox (expandir foto em tela cheia)
     (function () {
       var lightbox = document.querySelector('[data-lightbox]');
@@ -295,7 +271,7 @@
       var btnFechar = lightbox.querySelector('[data-lb-fechar]');
       var btnAnterior = lightbox.querySelector('[data-lb-anterior]');
       var btnProxima = lightbox.querySelector('[data-lb-proxima]');
-      var fotos = Array.prototype.slice.call(document.querySelectorAll('.carrossel-item img'));
+      var fotos = Array.prototype.slice.call(document.querySelectorAll('.galeria-foto'));
       var indiceAtual = 0;
 
       function atualizar() {
@@ -323,6 +299,11 @@
 
       fotos.forEach(function (foto, i) {
         foto.addEventListener('click', function () { abrir(i); });
+      });
+      var btnVerTodas = document.querySelector('[data-ver-todas]');
+      if (btnVerTodas) btnVerTodas.addEventListener('click', function (e) {
+        e.stopPropagation();
+        abrir(0);
       });
       btnFechar.addEventListener('click', fechar);
       btnAnterior.addEventListener('click', function () { mudar(-1); });
